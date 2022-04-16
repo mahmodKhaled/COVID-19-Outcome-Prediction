@@ -12,7 +12,9 @@ The dataset contains 14 major variables that will be having an impact on whether
 14. _Result: death (1) or recovered (0)_
 
 > The project is implemented by the programming language **_Python_**
+
 > The project used different **Machine Learning Algorithms**
+
 > The project is written fully in **_Jupyter Notebook_**
 ## Classifiers Used
 - K-Nearest Neighbors
