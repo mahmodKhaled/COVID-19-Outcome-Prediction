@@ -31,8 +31,32 @@ The dataset contains 14 major variables that will be having an impact on whether
 | `recall` | 0.99 | 0.62  | 
 | `f1-score` |  0.97  | 0.71 |
 #### Logistic Regression
+
+| **Performance Comparisons** | **Class 0** | **Class 1** |
+| - | - | - |
+| `precision` | 0.96 |  0.71 |
+| `recall` | 0.97 | 0.62  | 
+| `f1-score` |  0.97  | 0.67 |
 #### Naïve Bayes
+
+| **Performance Comparisons** | **Class 0** | **Class 1** |
+| - | - | - |
+| `precision` | 0.96 |   0.13 |
+| `recall` | 0.29 | 0.89  | 
+| `f1-score` |  0.45  | 0.22 |
 #### Decision Trees
+
+| **Performance Comparisons** | **Class 0** | **Class 1** |
+| - | - | - |
+| `precision` | 1.00 | 0.89 |
+| `recall` | 0.99 | 1.00 | 
+| `f1-score` |  0.99  | 0.94 |
 #### Support Vector Machines
+
+| **Performance Comparisons** | **Class 0** | **Class 1** |
+| - | - | - |
+| `precision` | 0.97 | 0.86 |
+| `recall` | 0.99 | 0.75  | 
+| `f1-score` |  0.98  | 0.80 |
 ## Project Status
 ![Build](https://img.shields.io/badge/Build-Finished-brightgreen)
