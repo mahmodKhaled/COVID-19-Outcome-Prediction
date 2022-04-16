@@ -24,6 +24,12 @@ The dataset contains 14 major variables that will be having an impact on whether
 - Support Vector Machines
 ## Performance Metrics
 #### K-Nearest Neighbors
+
+| **Performance Comparisons** | **Class 0** | **Class 1** |
+| - | - | - |
+| `precision` | 0.96 | 0.83 |
+| `recall` | 0.99 | 0.62  | 
+| `f1-score` |  0.97  | 0.71 |
 #### Logistic Regression
 #### Naïve Bayes
 #### Decision Trees
