@@ -1,4 +1,4 @@
-# COVID-19-Outcome-Prediction
+# COVID19 Outcome Prediction
 The data used in this project will help to identify whether a person is going to recover from coronavirus symptoms or not based on some pre-defined standard symptoms. These symptoms are based on guidelines given by the _World Health Organization_ (WHO).
 The dataset contains 14 major variables that will be having an impact on whether someone has recovered or not, the description of each variable are as follows,
 1. _Country:_ where the person resides
