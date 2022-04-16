@@ -23,10 +23,10 @@ The dataset contains 14 major variables that will be having an impact on whether
 - Decision Trees
 - Support Vector Machines
 ## Performance Metrics
-### K-Nearest Neighbors
-### Logistic Regression
-### Naïve Bayes
-### Decision Trees
-### Support Vector Machines
+#### K-Nearest Neighbors
+#### Logistic Regression
+#### Naïve Bayes
+#### Decision Trees
+#### Support Vector Machines
 ## Project Status
 ![Build](https://img.shields.io/badge/Build-Finished-brightgreen)
