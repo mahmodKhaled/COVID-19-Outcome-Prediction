@@ -6,6 +6,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 import random
+from process_data import *
+import os
 
 def create_model(model_type):
     if model_type == "DecisionTree":
@@ -24,7 +26,10 @@ def create_model(model_type):
     return classifier
 
 def optimize_model(X_train, yTrain, model, model_type):
-    if model_type == "DecisionTree":
+    if model_type == "LogisticRegression" or model_type == "NaiveBayes":
+        best_params = {}
+        return best_params
+    elif model_type == "DecisionTree":
         param_dist = {
         "criterion" : ["gini" , "entropy"],
         "max_depth" : [2 , 4 , 6 , 8],
@@ -74,3 +79,22 @@ def train_optimized_model(X_train, yTrain, X_test, best_params, model_type):
     model.fit(X_train , yTrain)
     y_pred = model.predict(X_test)
     return y_pred
+
+if __name__ == "__main__":
+    models = ["DecisionTree" , "KNN" , "LogisticRegression" , "NaiveBayes" , "SVM"]
+    curr_dir = os.getcwd()
+    train_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/train.csv'
+    test_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/test.csv'
+    train = pd.read_csv(os.path.join(curr_dir, train_path))
+    test = pd.read_csv(os.path.join(curr_dir, test_path))
+    X_train, yTrain = split_data(train)
+    X_test, yTest = split_data(test)
+    models_preds = {}
+    for model_type in models:
+        model = create_model(model_type)
+        best_params = optimize_model(X_train, yTrain, model, model_type)
+        y_pred = train_optimized_model(X_train, yTrain, X_test, best_params, model_type)
+        models_preds[model_type] = y_pred
+    models_preds_df = pd.DataFrame(models_preds)
+    models_preds_df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/models_preds.csv', index=False)
+    
