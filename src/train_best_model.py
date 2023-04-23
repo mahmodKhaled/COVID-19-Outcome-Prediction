@@ -23,13 +23,11 @@ def print_info(best_model, best_params, score, cm, cr):
 
 def get_train_data():
     curr_dir = os.getcwd()
-    train_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/train.csv'
-    test_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/test.csv'
-    train = pd.read_csv(os.path.join(curr_dir, train_path))
-    test = pd.read_csv(os.path.join(curr_dir, test_path))
-    X_train, yTrain = split_data(train)
-    X_test, yTest = split_data(test)
-    report_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/models_score.csv'
+    train_path = 'outputs/train.csv'
+    test_path = 'outputs/test.csv'
+    X_train, yTrain = read_and_split_data(train_path)
+    X_test, yTest = read_and_split_data(test_path)
+    report_path = 'outputs/models_score.csv'
     report = pd.read_csv(os.path.join(curr_dir, report_path))
     return X_train, yTrain, X_test, yTest, report
 
