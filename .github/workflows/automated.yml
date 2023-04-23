@@ -21,9 +21,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run pipeline
-        run: |
-          python src/process_data.py
-          python src/models.py
-          python src/model_selection.py
-          python src/train_best_model.py
+      - name: Transform Data
+        run: python src/process_data.py
+      - name: Train Models
+        run: python src/models.py
+      - name: Choose Best Model
+        run: python src/model_selection.py
+      - name: Train Best Model
+        run: python src/train_best_model.py
