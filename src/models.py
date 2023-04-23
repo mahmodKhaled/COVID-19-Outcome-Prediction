@@ -77,7 +77,7 @@ def train_optimized_model(X_train, yTrain, X_test, best_params, model_type):
     else:
         raise Exception("Invalid model type")
     model.fit(X_train , yTrain)
-    y_pred = model.predict(X_test)
+    y_pred = model.predict_proba(X_test)[:,1]
     return y_pred
 
 if __name__ == "__main__":
