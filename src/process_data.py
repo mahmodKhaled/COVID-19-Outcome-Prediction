@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler
 
 def read_data():
     current_dir = os.getcwd()
-    data_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/input/data.csv'
+    data_path = 'input/data.csv'
     file_path = os.path.join(current_dir, data_path)
     file = pd.read_csv(file_path, index_col= 0)
     return file
@@ -31,10 +31,18 @@ def produce_data(X,y, type):
     # merge the two dataframes
     df = pd.concat([X_df, y_df], axis=1)
     # save the dataframe to a csv file
+    curr_dir = os.getcwd()
+    output_path = 'outputs'
     if type == "train":
-        df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/train.csv', index=False)
+        train_path = output_path + '/train.csv'
+        if not os.path.exists(os.path.join(curr_dir, output_path)):
+            os.makedirs(os.path.join(curr_dir, output_path))
+        df.to_csv(os.path.join(curr_dir, train_path), index=False)
     elif type == "test":
-        df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/test.csv', index=False)
+        if not os.path.exists(os.path.join(curr_dir, output_path)):
+            os.makedirs(os.path.join(curr_dir, output_path))
+        test_path = output_path + '/test.csv'
+        df.to_csv(os.path.join(curr_dir, test_path), index=False)
 
 def split_data(data):
     x = data[["location" , "country" , "gender" , "age" , "vis_wuhan" , "from_wuhan" , "symptom1" , "symptom2" , "symptom3"
