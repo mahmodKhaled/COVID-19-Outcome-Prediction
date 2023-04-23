@@ -9,6 +9,12 @@ import random
 from process_data import *
 import os
 
+def read_and_split_data(path):
+    curr_dir = os.getcwd()
+    data = pd.read_csv(os.path.join(curr_dir, path))
+    X, y = split_data(data)
+    return X, y
+
 def create_model(model_type):
     if model_type == "DecisionTree":
         classifier = DecisionTreeClassifier()
@@ -85,21 +91,26 @@ def train_optimized_model(X_train, yTrain, X_test, best_params, model_type, pred
         raise Exception("Invalid pred type")
     return y_pred
 
+def save_model_preds(models_preds):
+    models_preds_df = pd.DataFrame(models_preds)
+    curr_dir = os.getcwd()
+    output_path = 'outputs'
+    train_path = output_path + '/models_preds.csv'
+    if not os.path.exists(os.path.join(curr_dir, output_path)):
+        os.makedirs(os.path.join(curr_dir, output_path))
+    models_preds_df.to_csv(os.path.join(curr_dir, train_path), index=False)
+
 if __name__ == "__main__":
     models = ["DecisionTree" , "KNN" , "LogisticRegression" , "NaiveBayes" , "SVM"]
-    curr_dir = os.getcwd()
-    train_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/train.csv'
-    test_path = 'C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/test.csv'
-    train = pd.read_csv(os.path.join(curr_dir, train_path))
-    test = pd.read_csv(os.path.join(curr_dir, test_path))
-    X_train, yTrain = split_data(train)
-    X_test, yTest = split_data(test)
+    train_path = 'outputs/train.csv'
+    test_path = 'outputs/test.csv'
+    X_train, yTrain = read_and_split_data(train_path)
+    X_test, yTest = read_and_split_data(test_path)
     models_preds = {}
     for model_type in models:
         model = create_model(model_type)
         best_params = optimize_model(X_train, yTrain, model, model_type)
         y_pred = train_optimized_model(X_train, yTrain, X_test, best_params, model_type, "proba")
         models_preds[model_type] = y_pred
-    models_preds_df = pd.DataFrame(models_preds)
-    models_preds_df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/models_preds.csv', index=False)
+    save_model_preds(models_preds)
     
