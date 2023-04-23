@@ -63,7 +63,7 @@ def optimize_model(X_train, yTrain, model, model_type):
     best_params = grid.best_params_
     return best_params
 
-def train_optimized_model(X_train, yTrain, X_test, best_params, model_type):
+def train_optimized_model(X_train, yTrain, X_test, best_params, model_type, pred_type):
     if model_type == "DecisionTree":
         model = DecisionTreeClassifier(criterion= best_params["criterion"] , max_depth= best_params["max_depth"] , min_samples_leaf= best_params["min_samples_leaf"])
     elif model_type == "LogisticRegression":
@@ -77,7 +77,12 @@ def train_optimized_model(X_train, yTrain, X_test, best_params, model_type):
     else:
         raise Exception("Invalid model type")
     model.fit(X_train , yTrain)
-    y_pred = model.predict_proba(X_test)[:,1]
+    if pred_type == "proba":
+        y_pred = model.predict_proba(X_test)[:,1]
+    elif pred_type == "class":
+        y_pred = model.predict(X_test)
+    else:
+        raise Exception("Invalid pred type")
     return y_pred
 
 if __name__ == "__main__":
@@ -93,7 +98,7 @@ if __name__ == "__main__":
     for model_type in models:
         model = create_model(model_type)
         best_params = optimize_model(X_train, yTrain, model, model_type)
-        y_pred = train_optimized_model(X_train, yTrain, X_test, best_params, model_type)
+        y_pred = train_optimized_model(X_train, yTrain, X_test, best_params, model_type, "proba")
         models_preds[model_type] = y_pred
     models_preds_df = pd.DataFrame(models_preds)
     models_preds_df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/models_preds.csv', index=False)
