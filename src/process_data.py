@@ -36,6 +36,12 @@ def produce_data(X,y, type):
     elif type == "test":
         df.to_csv('C:/Users/mahmo/Desktop/COVID-19-Outcome-Prediction/outputs/test.csv', index=False)
 
+def split_data(data):
+    x = data[["location" , "country" , "gender" , "age" , "vis_wuhan" , "from_wuhan" , "symptom1" , "symptom2" , "symptom3"
+          , "symptom4" , "symptom5" , "symptom6" , "diff_sym_hos"]].values ## features
+    y = data.result.values ## result
+    return x, y
+
 if __name__ == "__main__":
     file = read_data()
     X_train , X_test , yTrain , yTest = process_data(file)
