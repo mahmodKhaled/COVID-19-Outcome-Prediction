@@ -44,7 +44,6 @@ def optimize_model(X_train, yTrain, model, model_type):
         grid = GridSearchCV(model , param_grid= param_dist , cv= 10 , n_jobs= -1)
     elif model_type == "KNN":
         # define the parameter values that should be searched
-        # for python 2, k_range = range(1, 31)
         k_range = list(range(1, 31))
         # create a parameter grid: map the parameter names to the values that should be searched
         # simply a python dictionary
