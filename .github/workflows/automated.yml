@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run pipeline
         run: |
-          python process_data.py
-          python models.py
-          python model_selection.py
-          python train_best_model.py
+          python src/process_data.py
+          python src/models.py
+          python src/model_selection.py
+          python src/train_best_model.py
