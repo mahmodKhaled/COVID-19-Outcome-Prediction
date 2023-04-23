@@ -59,7 +59,7 @@ def optimize_model(X_train, yTrain, model, model_type):
         param_grid = {'C': [0.1, 1, 10, 100, 1000],
               'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
               'kernel': ['rbf' , 'linear']}
-        grid = GridSearchCV(model, param_grid, refit = True, verbose = 3)
+        grid = GridSearchCV(model, param_grid, refit = True, verbose = 0)
     else:
         raise Exception("Invalid model type")
     grid.fit(X_train , yTrain)
